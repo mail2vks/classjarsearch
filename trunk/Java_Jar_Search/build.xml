@@ -1,0 +1,32 @@
+<project name="Java-Playground-IO" default="all">
+	<import file="common/common-build.xml" />
+
+	<path id="compile.classpath">
+		<fileset dir="lib" includes="*.jar" />
+	</path>
+
+	<path id="run.classpath">
+		<fileset dir="build" includes="file.jar" />
+		<path refid="compile.classpath" />
+	</path>
+
+	<target name="clean">
+		<delete dir="build" />
+		<mkdir dir="build/ant/classes" />
+	</target>
+
+	<target name="compile" depends="clean">
+		<javac classpathref="compile.classpath" srcdir="src" destdir="build/ant/classes" />
+	</target>
+
+	<target name="dist" depends="compile">
+		<jar destfile="build/jarSearch.jar" manifest="conf/MANIFEST.MF">
+			<fileset dir="build/ant/classes">
+				<include name="**/*.class" />
+			</fileset>
+			<!--fileset dir="conf">
+				<include name="*.properties" />
+			</fileset-->
+		</jar>
+	</target>
+</project>
