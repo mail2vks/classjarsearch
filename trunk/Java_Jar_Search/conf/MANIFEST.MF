@@ -1,1 +1,2 @@
-Main-Class: com.vivek.file.DirectoryReader
+Class-Path: swt.jar
+Main-Class: com.vivek.swt.WindowObserver

@@ -8,6 +8,19 @@
 	<property name="ivy.jar.dir" value="${ivy.home}/lib" />
 	<property name="ivy.jar.file" value="${ivy.jar.dir}/ivy.jar" />
 	<property name="ivy.zip.file" value="apache-ivy-2.0.0-bin.zip" />
+	<property name="build.dir" value="build/ant" />
+	<property name="classes.dir" value="${build.dir}/classes" />
+
+	<path id="compile.classpath">
+		<fileset dir="lib" includes="*.jar" />
+	</path>
+
+	<path id="run.classpath">
+		<fileset dir="${classes.dir}" includes="${ant.project.name}.jar" />
+		<path refid="compile.classpath" />
+	</path>
+
+	<target name="all" depends="resolve,compile,dist" />
 
 	<target name="download-ivy" unless="offline">
 
@@ -32,18 +45,16 @@
 		<ivy:retrieve />
 	</target>
 
-	<target name="compile">
-		<mkdir dir="build/classes" />
-		<javac classpathref="compile.classpath" srcdir="src" destdir="build/classes" />
+	<target name="clean">
+		<delete dir="build" />
+		<mkdir dir="${classes.dir}" />
+	</target>
+
+	<target name="compile" depends="clean">
+		<javac classpathref="compile.classpath" srcdir="src" destdir="${classes.dir}" />
 	</target>
 
 	<target name="dist" depends="compile" description="Generates Jar File">
-		<jar basedir="build/classes" file="build/file.jar">
-			<fileset dir="conf">
-				<include name="log4j.properties" />
-			</fileset>
-		</jar>
+		<jar basedir="${classes.dir}" file="build/${ant.project.name}.jar" />
 	</target>
-
-	<target name="all" depends="resolve,compile,dist" />
 </project>

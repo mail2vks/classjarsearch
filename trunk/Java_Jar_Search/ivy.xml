@@ -7,6 +7,6 @@
 		<conf name="runtime" />
 	</configurations>
 	<dependencies>
-		<dependency org="log4j" name="log4j" rev="1.2.14" conf="runtime->master" />
+		<dependency org="log4j" name="log4j" rev="1.2.15" conf="runtime->master" />
 	</dependencies>
 </ivy-module>
