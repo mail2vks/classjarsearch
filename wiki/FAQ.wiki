@@ -5,11 +5,7 @@ _classjarsearch_ is a small java based utility for searching class files within 
 
 === Any External Dependencies ?===
 
-`JarSearch.jar` is dependent on _SWT_ for *GUI Version*. To make this jar work along with _SWT_, please download *swt.jar* seperately from [http://www.eclipse.org/swt SWT Home].
-
-=== How to use Command Line Version ? ===
-
-From the command line `java -cp JarSearch.jar com.vivek.file.DirectoryReader <Location to Search, Must be a directory for now> <Full name or partial name of class file to search>`.
+`JarSearch.jar` is dependent on _SWT_ for *GUI*. To make this jar work along with _SWT_, please download *swt.jar* seperately from [http://www.eclipse.org/swt SWT Home].
 
 === How to use GUI Line Version ? ===
 
