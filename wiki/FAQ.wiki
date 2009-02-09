@@ -5,11 +5,11 @@
 
 _classjarsearch_ is a small java based utility for searching class files within java jar files present in selected directory.
 
-== Dependencies ==
+== Any External Dependencies ?==
 
-JarSearch.jar is dependent on SWT. To make this jar work along with _SWT_, please download *swt.jar* seperately from [http://www.eclipse.org/swt swt]here.
+`JarSearch.jar` is dependent on SWT. To make this jar work along with _SWT_, please download *swt.jar* seperately from [http://www.eclipse.org/swt SWT Home].
 
-= Details =
+== Details ==
 
 Add your content here.  Format your content with:
   * Text in *bold* or _italic_
