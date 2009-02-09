@@ -7,7 +7,7 @@ _classjarsearch_ is a small java based utility for searching class files within 
 
 `JarSearch.jar` is dependent on _SWT_ for *GUI*. To make this jar work along with _SWT_, please download *swt.jar* seperately from [http://www.eclipse.org/swt SWT Home].
 
-=== How to use GUI Version ? ===
+=== How to use GUI ? ===
 
   * Download _SWT_ jar from [http://www.eclipse.org/swt SWT Home].
   * Rename downloaded jar as `swt.jar`.
