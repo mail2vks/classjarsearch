@@ -130,23 +130,6 @@ public class DirectoryReader extends Observable
         }
     }
 
-    public static void main(String args[])
-    {
-
-        if (args.length < 2)
-        {
-            System.out.println("Usage:"
-                               + " java -jar jarSearch.jar"
-                               + " <Location to Search>"
-                               + " <Class File Name>");
-        }
-        else
-        {
-            DirectoryReader reader = new DirectoryReader();
-            reader.search(new JarFilter(), args[1], args[0]);
-        }
-    }
-
     public void setStatusText(Text value)
     {
         this.statusText = value;
