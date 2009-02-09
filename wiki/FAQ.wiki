@@ -1,3 +1,4 @@
+#labels Featured
 === What is _classjarsearch_ ? ===
 
 _classjarsearch_ is a small java based utility for searching class files within java jar files present in selected directory.
