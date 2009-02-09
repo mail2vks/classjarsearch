@@ -8,9 +8,11 @@ _classjarsearch_ is a small java based utility for searching class files within 
 
 === How to use Command Line Version ? ===
 
+From the command line `java -jar Jarsearch.jar <Location to Search, Must be a directory for now> <Full name or partial name of class file to search>`.
+
 === How to use GUI Line Version ? ===
 
-  * Download SWT jar from [http://www.eclipse.org/swt SWT Home].
+  * Download _SWT_ jar from [http://www.eclipse.org/swt SWT Home].
   * Rename downloaded jar as `swt.jar`.
   * Copy `swt.jar` to the same directory as `JarSearch.jar`.
   * Execute this jar file using Java simply by clicking on it or running from command line `java -jar JarSearch.jar`.
