@@ -1,15 +1,12 @@
-#summary One-sentence summary of this page.
-=Frequently Asked Questions=
-
-== What is _classjarsearch_ ? ==
+=== What is _classjarsearch_ ? ===
 
 _classjarsearch_ is a small java based utility for searching class files within java jar files present in selected directory.
 
-== Any External Dependencies ?==
+=== Any External Dependencies ?===
 
 `JarSearch.jar` is dependent on SWT. To make this jar work along with _SWT_, please download *swt.jar* seperately from [http://www.eclipse.org/swt SWT Home].
 
-== Details ==
+=== Details ===
 
 Add your content here.  Format your content with:
   * Text in *bold* or _italic_
