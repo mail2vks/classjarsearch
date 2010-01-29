@@ -25,7 +25,8 @@ public class DirectoryReader extends Observable
      */
     private static final int MILLISECONDS = 1000;
 
-    private Multimap<String, String> results = new ArrayListMultimap<String, String>();
+    private Multimap<String, String> results = ArrayListMultimap
+        .create();
 
     private Text statusText;
 
@@ -56,13 +57,17 @@ public class DirectoryReader extends Observable
     private void parse(File f, FilenameFilter filter,
         String searchString)
     {
-        if (f.isFile())
+        if (searchString.length() > 0)
         {
-            searchClassInJar(f, searchString);
-        }
-        else if (f.isDirectory() && !f.isHidden())
-        {
-            getContent(f, filter, searchString);
+            if (f.isFile())
+            {
+                searchClassInJar(f, searchString);
+            }
+            else if ( (f.isDirectory() && !f.isHidden())
+                     || f.isAbsolute())
+            {
+                getContent(f, filter, searchString);
+            }
         }
     }
 
@@ -98,6 +103,7 @@ public class DirectoryReader extends Observable
 
     private void searchClassInJar(File f, String searchString)
     {
+        searchString = searchString.replaceAll("\\.", "/");
         setStatus(f.getAbsolutePath());
         String fileName = null;
         try
@@ -110,7 +116,8 @@ public class DirectoryReader extends Observable
                 while (entries.hasMoreElements())
                 {
                     fileName = entries.nextElement().getName();
-                    if (fileName.indexOf(searchString) != -1)
+                    if (fileName.toLowerCase().indexOf(
+                        searchString.toLowerCase()) != -1)
                     {
                         System.out.println("Found "
                                            + searchString
