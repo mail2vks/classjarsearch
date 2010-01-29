@@ -1,2 +1,1 @@
-Class-Path: swt.jar
 Main-Class: com.vivek.swt.WindowObserver
