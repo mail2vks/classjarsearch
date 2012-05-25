@@ -65,6 +65,7 @@ public class SearchResultsModel extends AbstractTableModel {
     }
 
     private void populateRowList(Set<Entry<String, Collection<String>>> entrySet) {
+        rowList.clear();
         Iterator<Entry<String, Collection<String>>> itr = entrySet.iterator();
         while (itr.hasNext()) {
             Entry<String, Collection<String>> collectionEntry = itr.next();
