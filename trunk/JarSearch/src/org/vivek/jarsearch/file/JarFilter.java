@@ -15,14 +15,11 @@ public class JarFilter implements FilenameFilter
     public boolean accept(File dir, String name)
     {
 
-        if (name.endsWith(".jar") || name.endsWith(".zip"))
+        if (name != null && 
+        		(name.endsWith(".jar") || name.endsWith(".zip")))
         {
             return true;
         }
-        else
-        {
             return false;
-        }
     }
-
 }

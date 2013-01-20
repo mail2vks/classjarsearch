@@ -1,6 +1,10 @@
 package org.vivek.jarsearch.ui;
 
+import java.awt.Desktop;
+import java.awt.Point;
+import java.awt.event.MouseEvent;
 import java.io.File;
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
@@ -9,7 +13,7 @@ import org.vivek.jarsearch.file.JarFilter;
 
 /**
  * @author singh.kr.vivek
- * 
+ *
  * Main Class generated using NetBeans which loads Swing UI
  */
 public class JarSearchFrame extends javax.swing.JFrame {
@@ -18,6 +22,7 @@ public class JarSearchFrame extends javax.swing.JFrame {
     private static final Logger log = Logger.getLogger(JarSearchFrame.class.getCanonicalName());
     public static final DirectoryReader reader = new DirectoryReader();
     private static final SearchResultsModel searchResultsModel = new SearchResultsModel();
+    private int clickedRow = -1;
 
     /**
      * Creates new form JarSearchFrame
@@ -25,7 +30,7 @@ public class JarSearchFrame extends javax.swing.JFrame {
     public JarSearchFrame() {
         initComponents();
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -35,6 +40,8 @@ public class JarSearchFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPopupMenu1 = new javax.swing.JPopupMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         classNameLabel = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -46,6 +53,15 @@ public class JarSearchFrame extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         resultsTable = new javax.swing.JTable();
         statusLabel = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+
+        jMenuItem1.setText("Locate on Disk");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(jMenuItem1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -112,6 +128,11 @@ public class JarSearchFrame extends javax.swing.JFrame {
         resultsTable.setModel(searchResultsModel);
         resultsTable.setColumnSelectionAllowed(true);
         resultsTable.getTableHeader().setReorderingAllowed(false);
+        resultsTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                resultsTableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(resultsTable);
         resultsTable.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
@@ -119,14 +140,16 @@ public class JarSearchFrame extends javax.swing.JFrame {
         searchResultsPanel.setLayout(searchResultsPanelLayout);
         searchResultsPanelLayout.setHorizontalGroup(
             searchResultsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1080, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1266, Short.MAX_VALUE)
         );
         searchResultsPanelLayout.setVerticalGroup(
             searchResultsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(searchResultsPanelLayout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 551, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 635, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
+
+        jLabel3.setText("@mail2vks");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -137,10 +160,13 @@ public class JarSearchFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(statusLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(searchResultsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                        .addComponent(searchResultsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(statusLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 1195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(19, 19, 19))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -149,9 +175,13 @@ public class JarSearchFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(searchResultsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(statusLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(statusLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
                 .addContainerGap())
         );
+
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jLabel3, statusLabel});
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -179,14 +209,42 @@ public class JarSearchFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_browseButtonActionPerformed
 
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
-        
+
         reader.search(new JarFilter(), classTextField.getText(),
                 directoryTextField.getText(), statusLabel);
-        
+
         searchResultsModel.refresh();
 
 
     }//GEN-LAST:event_searchButtonActionPerformed
+
+    private void resultsTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_resultsTableMouseClicked
+        Point clickedPoint = evt.getPoint();
+        clickedRow = resultsTable.rowAtPoint(clickedPoint);
+        if (clickedRow != -1) {
+            //Identify if right click for menu was initiated.
+            if (evt.getButton() == MouseEvent.BUTTON3
+                    && Desktop.isDesktopSupported()) {
+                jPopupMenu1.show(resultsTable, clickedPoint.x, clickedPoint.y);
+            }
+        }
+    }//GEN-LAST:event_resultsTableMouseClicked
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        if (clickedRow != -1) {
+            String jarPath = (String) resultsTable.getModel().getValueAt(clickedRow, 1);
+            File jarFile = new File(jarPath);
+            if (jarFile.isFile() && jarFile.getParent() != null) {
+                try {
+                    Desktop.getDesktop().open(new File(jarFile.getParent()));
+                } catch (IOException ex) {
+                    Logger.getLogger(JarSearchFrame.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+
+        }
+
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -223,7 +281,6 @@ public class JarSearchFrame extends javax.swing.JFrame {
          * Create and display the form
          */
         java.awt.EventQueue.invokeLater(new Runnable() {
-
             public void run() {
                 new JarSearchFrame().setVisible(true);
             }
@@ -235,7 +292,10 @@ public class JarSearchFrame extends javax.swing.JFrame {
     private javax.swing.JTextField classTextField;
     private javax.swing.JTextField directoryTextField;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable resultsTable;
     private javax.swing.JButton searchButton;
